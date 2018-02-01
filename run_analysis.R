@@ -45,11 +45,12 @@ subjects <- rbind(subjects_train, subjects_test)
 tidy_data <- cbind(subjects, y, x)
 
 # create tidy data set of means by subject and activity
-tidy_data_summary <- group_by(data, Subject, Activity) %>%
+tidy_data_summary <- group_by(tidy_data, Subject, Activity) %>%
      summarise_all(funs(mean))
 
-# output tidy data set
-write.table(tidy_data, file = tidy_data.txt, row.names = FALSE)
+# output tidy data sets
+write.table(tidy_data, file = "tidy_data.txt", row.names = FALSE)
+write.table(tidy_data_summary, file = "tidy_data_summary.txt", row.names = FALSE)
 
 # remove intermediate data sets
 rm(
